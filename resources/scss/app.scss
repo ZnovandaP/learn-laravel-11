@@ -1,0 +1,22 @@
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+
+$bootstrap-icons-font-dir: 'bootstrap-icons/font/fonts';
+@import 'bootstrap-icons/font/bootstrap-icons.scss';
+
+.active {
+  font-weight: bolder;
+  text-decoration: underline;
+}
+
+.floating-btn {
+  position: fixed;
+  bottom: 4rem;
+  right: 4rem;
+  z-index: 99;
+}
+
+@media screen and (min-width: 768px) {
+  .search-blog__title{
+    max-width: 60%;
+  }
+}
