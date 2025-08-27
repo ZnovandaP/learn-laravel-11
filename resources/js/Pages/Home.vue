@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-defineProps<
-
->()
-
 let name: string = 'Hanolll';
 
 const state = ref(0);

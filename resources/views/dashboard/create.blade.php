@@ -16,7 +16,8 @@
     <x-slot name="header">
       <h1 class="mt-3">{{ $title }}</h1>
     </x-slot>
-
+    
+    @dump(session()->all())
 
     <form action="{{ route('post.store') }}" class="mt-5" method="POST" enctype="multipart/form-data">
       @method('POST')
@@ -25,7 +26,7 @@
       <div class="input-group marker">
         <span class="input-group-text border-secondary" id="basic-addon1">Title Blog</span>
         <input type="text" class="form-control border-secondary" placeholder="title" aria-label="title"
-          name="title" aria-describedby="basic-addon1" value="{{ session('temp') ? session('temp')['title'] : '' }}">
+          name="title" aria-describedby="basic-addon1" value="{{ old('title') }}">
       </div>
       @error('title')
         <P class="text-danger my-2">{{ $message }}</P>
@@ -38,8 +39,8 @@
             <select class="form-select border-secondary" aria-label="Select category" id="category" name="category">
               <option selected="{{ !session('temp') }}" disabled>Select category post</option>
               @foreach ($categories as $category)
-                @if (session('temp'))
-                  <option value="{{ $category->id }}" selected="{{ $category->id == session('temp')['category'] }}">
+                @if (old('category'))
+                  <option value="{{ $category->id }}" selected="{{ $category->id == old('category') }}">
                     {{ $category->name }}</option>
                 @else
                   <option value="{{ $category->id }}">
@@ -59,8 +60,8 @@
             <select class="form-select border-secondary" aria-label="Select author" id="author" name="author">
               <option selected="{{ !session('temp') }}" disabled>Select author post</option>
               @foreach ($users as $user)
-              @if (session('temp'))
-                  <option value="{{ $user->id }}" selected="{{ $user->id == session('temp')['author'] }}">
+              @if (old('author'))
+                  <option value="{{ $user->id }}" selected="{{ $user->id == old('author') }}">
                   {{ $user->name }}</option>
                 @else
                   <option value="{{ $category->id }}">
@@ -80,7 +81,7 @@
         <span class="input-group-text bg-light-subtle border-secondary">Body Blog</span>
         <textarea style="min-height: 180px; max-height: 300px" class="form-control border-secondary" aria-label="With textarea"
           name="body">
-          {{ session('temp') ? trim(session('temp')['body']) : '' }}
+          {{ old('body') }}
         </textarea>
       </div>
 
