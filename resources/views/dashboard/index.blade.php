@@ -14,13 +14,13 @@
 <body>
   <x-layout>
     <x-slot name="header">
-      <h1 class="mt-3">{{ $title }}</h1>
+      <h2 class="my-5">{{ $title }}</h1>
 
-      @if (session('success'))
-        <div class="alert alert-success mb-0 mt-3" role="alert">
-          {{ session('success') }}
-        </div>
-      @endif
+        @if (session('success'))
+      <div class="alert alert-success mb-0 mt-3" role="alert">
+        {{ session('success') }}
+      </div>
+    @endif
     </x-slot>
 
     <div class="d-flex justify-content-end align-items-center mt-3 flex-wrap gap-3">
@@ -30,14 +30,14 @@
         </button>
         <ul class="dropdown-menu border-warning">
           @forelse ($categories as $category)
-            <li>
-              <a class="dropdown-item {{ request('category') == $category->slug ? 'bg-warning' : '' }}"
-                href="{{ route('dashboard.index', ['category' => $category->slug]) }}">
-                {{ $category->name }}</a>
-            </li>
-          @empty
-            <li class="dropdown-item">Empty Category</li>
-          @endforelse
+        <li>
+        <a class="dropdown-item {{ request('category') == $category->slug ? 'bg-warning' : '' }}"
+          href="{{ route('dashboard.index', ['category' => $category->slug]) }}">
+          {{ $category->name }}</a>
+        </li>
+      @empty
+        <li class="dropdown-item">Empty Category</li>
+      @endforelse
         </ul>
       </div>
 
@@ -47,30 +47,29 @@
         </button>
         <ul class="dropdown-menu border-success">
           @forelse ($users as $user)
-            <li>
-              <a class="dropdown-item {{ request('author') == $user->username ? 'bg-success text-light' : '' }}"
-                href="{{ route('dashboard.index', ['author' => $user->username]) }}">
-                {{ $user->name }}</a>
-            </li>
-          @empty
-            <li class="dropdown-item">Empty Author</li>
-          @endforelse
+        <li>
+        <a class="dropdown-item {{ request('author') == $user->username ? 'bg-success text-light' : '' }}"
+          href="{{ route('dashboard.index', ['author' => $user->username]) }}">
+          {{ $user->name }}</a>
+        </li>
+      @empty
+        <li class="dropdown-item">Empty Author</li>
+      @endforelse
         </ul>
       </div>
 
       <form style="height:fit-content">
-          @if (request('category'))
-            <input type="search" name="category" value="{{ request('category') }}" hidden>
-          @endif
-          @if (request('author'))
-            <input type="search" name="author" value="{{ request('author') }}" hidden>
-          @endif
-          <div class="input-group">
-            <input type="search" class="form-control border-primary" autocomplete="off"
-            placeholder="Search by title..." aria-label="Search by title" name="title"
-            aria-describedby="button-addon2">
-            <button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
-          </div>
+        @if (request('category'))
+      <input type="search" name="category" value="{{ request('category') }}" hidden>
+    @endif
+        @if (request('author'))
+      <input type="search" name="author" value="{{ request('author') }}" hidden>
+    @endif
+        <div class="input-group">
+          <input type="search" class="form-control border-primary" autocomplete="off" placeholder="Search by title..."
+            aria-label="Search by title" name="title" aria-describedby="button-addon2">
+          <button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
+        </div>
       </form>
 
     </div>
@@ -91,32 +90,32 @@
         </thead>
         <tbody>
           @forelse ($posts as $key => $post)
-            <tr>
-              <th scope="row">{{ $posts->firstItem() + $key }}</th>
-              <td>{{ $post->title }}</td>
-              <td>{{ $post->author->name }}</td>
-              <td><span class="badge text-bg-warning">{{ $post->category->name }}</span></td>
-              <td>{{ Str::limit($post->body, 120) }}</td>
-              <td>{{ $post->created_at }}</td>
-              <td>{{ $post->updated_at }}</td>
-              <td class="d-flex gap-2">
-                <a href="{{ route('post.edit', $post->slug) }}" class="btn btn-primary" title="Edit post">
-                  <i class="bi bi-pencil-square"></i>
-                </a>
-                <a href="{{ route('post.show', $post->slug) }}" class="btn btn-info" title="Preview/show post">
-                  <i class="bi bi-search text-white"></i>
-                </a>
-                <button class="btn btn-danger" title="Delete post" onClick="injectPostIdToModal('{{ $post->id }}')"
-                  data-bs-toggle="modal" data-bs-target="#modal-permission">
-                  <i class="bi bi-trash"></i>
-                </button>
-              </td>
-            </tr>
-          @empty
-            <tr class="table-danger">
-              <td colspan="8">Data Post is Empty</td>
-            </tr>
-          @endforelse
+        <tr>
+        <th scope="row">{{ $posts->firstItem() + $key }}</th>
+        <td>{{ $post->title }}</td>
+        <td>{{ $post->author->name }}</td>
+        <td><span class="badge text-bg-warning">{{ $post->category->name }}</span></td>
+        <td>{{ Str::limit($post->body, 120) }}</td>
+        <td>{{ $post->created_at }}</td>
+        <td>{{ $post->updated_at }}</td>
+        <td class="d-flex gap-2">
+          <a href="{{ route('post.edit', $post->slug) }}" class="btn btn-primary" title="Edit post">
+          <i class="bi bi-pencil-square"></i>
+          </a>
+          <a href="{{ route('post.show', $post->slug) }}" class="btn btn-info" title="Preview/show post">
+          <i class="bi bi-search text-white"></i>
+          </a>
+          <button class="btn btn-danger" title="Delete post" onClick="injectPostIdToModal('{{ $post->id }}')"
+          data-bs-toggle="modal" data-bs-target="#modal-permission">
+          <i class="bi bi-trash"></i>
+          </button>
+        </td>
+        </tr>
+      @empty
+        <tr class="table-danger">
+        <td colspan="8">Data Post is Empty</td>
+        </tr>
+      @endforelse
         </tbody>
       </table>
     </section>
@@ -155,17 +154,17 @@
     </div>
 
     @push('scripts')
-      <script>
-        const deleteIdField = document.getElementById('delete-id');
+    <script>
+      const deleteIdField = document.getElementById('delete-id');
 
-        function injectPostIdToModal(id) {
-          deleteIdField.value = id;
+      function injectPostIdToModal(id) {
+      deleteIdField.value = id;
 
-          console.log(id);
+      console.log(id);
 
-        }
-      </script>
-    @endpush
+      }
+    </script>
+  @endpush
 
     <a href="{{ route('post.create') }}" class="btn btn-primary floating-btn position-fixed rounded-circle"
       title="Create/add new post">
