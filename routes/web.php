@@ -62,3 +62,8 @@ Route::group(['prefix' => 'session'], function () {
 Route::fallback(function () {
   return redirect()->route('blog.index');
 })->name('fallback');
+
+Route::view('/learning-blade', 'learning.learn', [
+  'hobbies' => ['Coding', 'Reading', 'Traveling'],
+  'helloService' => new \App\Demo\HelloServiceIndonesia('Novanda')
+]);

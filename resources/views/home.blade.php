@@ -11,15 +11,25 @@
 
 <body>
   <x-layout>
-     <x-slot name="header">
+    <x-slot name="header">
       <h1 class="mt-3">Home</h1>
     </x-slot>
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam voluptas minima libero excepturi ducimus natus in nemo ipsa porro provident repellendus incidunt dolor cum nulla molestias voluptatum obcaecati, maiores consequatur!
-    
-    Culpa, magni. Vero maxime alias consequuntur officia repellendus excepturi aliquid voluptates aut sapiente cupiditate, porro incidunt eos, culpa id dolor voluptate, dolore eius eum ut minus facilis voluptatum omnis. Amet!
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam voluptas minima libero excepturi ducimus natus
+    in nemo ipsa porro provident repellendus incidunt dolor cum nulla molestias voluptatum obcaecati, maiores
+    consequatur!
 
-    Possimus recusandae dolores harum commodi velit qui repellat non ratione voluptates, pariatur illo nulla dolorem iusto rem laudantium ab sint quae magnam voluptatem alias dolore officia. Quibusdam sit vitae consequuntur!
-    {{ request()->is('/') }}
+    Culpa, magni. Vero maxime alias consequuntur officia repellendus excepturi aliquid voluptates aut sapiente
+    cupiditate, porro incidunt eos, culpa id dolor voluptate, dolore eius eum ut minus facilis voluptatum omnis. Amet!
+
+    Possimus recusandae dolores harum commodi velit qui repellat non ratione voluptates, pariatur illo nulla dolorem
+    iusto rem laudantium ab sint quae magnam voluptatem alias dolore officia. Quibusdam sit vitae consequuntur!
+    <br>
+    <br>
+    @{{ request()->path() }}
+
+    @env('local')
+      <p>The application name is: {{ env('APP_NAME') }}</p>
+    @endenv
   </x-layout>
 </body>
 

@@ -1,6 +1,7 @@
 <?php
 namespace App\Demo;
 
-interface HelloService {
+interface HelloService
+{
   public function sayHello(string $name): string;
 }
