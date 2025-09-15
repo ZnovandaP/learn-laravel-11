@@ -64,6 +64,6 @@ Route::fallback(function () {
 })->name('fallback');
 
 Route::view('/learning-blade', 'learning.learn', [
-  'hobbies' => ['Coding', 'Reading', 'Traveling'],
+  'hobbies' => ['Coding', 'Reading', 'Traveling', 'Swimming'],
   'helloService' => new \App\Demo\HelloServiceIndonesia('Novanda')
 ]);
