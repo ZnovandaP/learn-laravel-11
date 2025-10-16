@@ -5,9 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  @vite(['resources/js/app.js'])
-
-
+  @vite(['resources/js/app.js', 'resources/scss/app.scss'])
   <title>{{ $title }}</title>
 </head>
 
@@ -59,18 +57,17 @@
       </div>
 
       <form style="height:fit-content">
-          @if (request('category'))
-            <input type="search" name="category" value="{{ request('category') }}" hidden>
-          @endif
-          @if (request('author'))
-            <input type="search" name="author" value="{{ request('author') }}" hidden>
-          @endif
-          <div class="input-group">
-            <input type="search" class="form-control border-primary" autocomplete="off"
-            placeholder="Search by title..." aria-label="Search by title" name="title"
-            aria-describedby="button-addon2">
-            <button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
-          </div>
+        @if (request('category'))
+          <input type="search" name="category" value="{{ request('category') }}" hidden>
+        @endif
+        @if (request('author'))
+          <input type="search" name="author" value="{{ request('author') }}" hidden>
+        @endif
+        <div class="input-group">
+          <input type="search" class="form-control border-primary" autocomplete="off" placeholder="Search by title..."
+            aria-label="Search by title" name="title" aria-describedby="button-addon2">
+          <button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
+        </div>
       </form>
 
     </div>

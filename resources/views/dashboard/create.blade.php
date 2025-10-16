@@ -5,9 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  @vite(['resources/js/app.js'])
-
-
+  @vite(['resources/js/app.js', 'resources/scss/app.scss'])
   <title>{{ $title }}</title>
 </head>
 
@@ -16,7 +14,7 @@
     <x-slot name="header">
       <h1 class="mt-3">{{ $title }}</h1>
     </x-slot>
-    
+
     @dump(session()->all())
 
     <form action="{{ route('post.store') }}" class="mt-5" method="POST" enctype="multipart/form-data">
@@ -25,8 +23,8 @@
 
       <div class="input-group marker">
         <span class="input-group-text border-secondary" id="basic-addon1">Title Blog</span>
-        <input type="text" class="form-control border-secondary" placeholder="title" aria-label="title"
-          name="title" aria-describedby="basic-addon1" value="{{ old('title') }}">
+        <input type="text" class="form-control border-secondary" placeholder="title" aria-label="title" name="title"
+          aria-describedby="basic-addon1" value="{{ old('title') }}">
       </div>
       @error('title')
         <P class="text-danger my-2">{{ $message }}</P>
@@ -41,10 +39,12 @@
               @foreach ($categories as $category)
                 @if (old('category'))
                   <option value="{{ $category->id }}" selected="{{ $category->id == old('category') }}">
-                    {{ $category->name }}</option>
+                    {{ $category->name }}
+                  </option>
                 @else
                   <option value="{{ $category->id }}">
-                    {{ $category->name }}</option>
+                    {{ $category->name }}
+                  </option>
                 @endif
               @endforeach
             </select>
@@ -60,12 +60,14 @@
             <select class="form-select border-secondary" aria-label="Select author" id="author" name="author">
               <option selected="{{ !session('temp') }}" disabled>Select author post</option>
               @foreach ($users as $user)
-              @if (old('author'))
+                @if (old('author'))
                   <option value="{{ $user->id }}" selected="{{ $user->id == old('author') }}">
-                  {{ $user->name }}</option>
+                    {{ $user->name }}
+                  </option>
                 @else
                   <option value="{{ $category->id }}">
-                    {{ $user->name }}</option>
+                    {{ $user->name }}
+                  </option>
                 @endif
               @endforeach
             </select>
@@ -79,8 +81,8 @@
 
       <div class="input-group mt-2">
         <span class="input-group-text bg-light-subtle border-secondary">Body Blog</span>
-        <textarea style="min-height: 180px; max-height: 300px" class="form-control border-secondary" aria-label="With textarea"
-          name="body">
+        <textarea style="min-height: 180px; max-height: 300px" class="form-control border-secondary"
+          aria-label="With textarea" name="body">
           {{ old('body') }}
         </textarea>
       </div>
