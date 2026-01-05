@@ -259,8 +259,6 @@ class EloquentLearningTest extends TestCase
 
     $this->assertCount(1, $tag->categories);
     $this->assertEquals($category->id, $tag->categories[0]->id);
-
-    dd($tag->posts->toArray(), $tag->categories->toArray());
   }
 }
 
