@@ -1,6 +1,7 @@
 <?php
 
 use App\Exceptions\UserInactiveException;
+use App\Http\Middleware\ApiAuthMiddleware;
 use Illuminate\Foundation\Application;
 use App\Http\Middleware\HandleInertiaRequests;
 use App\Http\Middleware\SimpleMiddleware;
@@ -13,7 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
     web: __DIR__ . '/../routes/web.php',
     commands: __DIR__ . '/../routes/console.php',
     api: __DIR__ . '/../routes/api.php',
-    apiPrefix: '',
+    apiPrefix: 'api',
     health: '/up',
   )
   ->withMiddleware(function (Middleware $middleware) {
@@ -22,7 +23,8 @@ return Application::configure(basePath: dirname(__DIR__))
     ]);
 
     $middleware->alias([
-      'customKey' => SimpleMiddleware::class
+      'customKey' => SimpleMiddleware::class,
+      'auth.api.scratch' => ApiAuthMiddleware::class,
     ]);
 
     $middleware->group('customKeyGroup', [
