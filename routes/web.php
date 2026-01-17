@@ -65,4 +65,9 @@ Route::get('/contact', function () {
   return view('contact');
 });
 
+Route::post('/users/login', [App\Http\Controllers\UserController::class, 'login'])->name('user.login');
+Route::get('/users/current', [App\Http\Controllers\UserController::class, 'current'])->name('user.current')->middleware('auth:token');
+// * with simple-token guard & simple user provider
+Route::get('/users/simple-current', [App\Http\Controllers\UserController::class, 'current'])->name('user.current')->middleware('auth:simple-token');
+
 require __DIR__ . '/auth.php';
