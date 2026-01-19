@@ -70,4 +70,8 @@ Route::get('/users/current', [App\Http\Controllers\UserController::class, 'curre
 // * with simple-token guard & simple user provider
 Route::get('/users/simple-current', [App\Http\Controllers\UserController::class, 'current'])->name('user.current')->middleware('auth:simple-token');
 
+Route::get('/sessions/set', [App\Http\Controllers\SessionController::class, 'set'])->name('session.set');
+Route::get('/sessions/get', [App\Http\Controllers\SessionController::class, 'get'])->name('session.get');
+Route::get('/sessions/all', [App\Http\Controllers\SessionController::class, 'getAll'])->name('session.get.all');
+
 require __DIR__ . '/auth.php';
